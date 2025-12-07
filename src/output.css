@@ -7,10 +7,14 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-amber-200: oklch(92.4% 0.12 95.746);
+    --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-purple-300: oklch(82.7% 0.119 306.383);
+    --color-purple-500: oklch(62.7% 0.265 303.9);
     --color-purple-700: oklch(49.6% 0.265 301.924);
-    --color-purple-900: oklch(38.1% 0.176 304.987);
+    --color-purple-800: oklch(43.8% 0.218 303.724);
     --color-fuchsia-300: oklch(83.3% 0.145 321.434);
+    --color-slate-800: oklch(27.9% 0.041 260.031);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-xl: 1.25rem;
@@ -175,14 +179,23 @@
   }
 }
 @layer utilities {
+  .mx-4 {
+    margin-inline: calc(var(--spacing) * 4);
+  }
+  .my-5 {
+    margin-block: calc(var(--spacing) * 5);
+  }
   .flex {
     display: flex;
   }
   .table {
     display: table;
   }
-  .h-7 {
-    height: calc(var(--spacing) * 7);
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
+  .h-1\/3 {
+    height: calc(1/3 * 100%);
   }
   .h-10 {
     height: calc(var(--spacing) * 10);
@@ -193,11 +206,17 @@
   .h-full {
     height: 100%;
   }
-  .w-4 {
-    width: calc(var(--spacing) * 4);
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
-  .w-7 {
-    width: calc(var(--spacing) * 7);
+  .w-1\/3 {
+    width: calc(1/3 * 100%);
+  }
+  .w-3 {
+    width: calc(var(--spacing) * 3);
+  }
+  .w-3\/5 {
+    width: calc(3/5 * 100%);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -214,18 +233,8 @@
   .justify-between {
     justify-content: space-between;
   }
-  .justify-center {
-    justify-content: center;
-  }
   .justify-end {
     justify-content: flex-end;
-  }
-  .space-x-6 {
-    :where(& > :not(:last-child)) {
-      --tw-space-x-reverse: 0;
-      margin-inline-start: calc(calc(var(--spacing) * 6) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-x-reverse)));
-    }
   }
   .space-x-11 {
     :where(& > :not(:last-child)) {
@@ -240,27 +249,27 @@
   .rounded-3xl {
     border-radius: var(--radius-3xl);
   }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
-  }
-  .rounded-xl {
-    border-radius: var(--radius-xl);
-  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .bg-amber-300 {
+    background-color: var(--color-amber-300);
+  }
   .bg-fuchsia-300 {
     background-color: var(--color-fuchsia-300);
   }
-  .bg-purple-300 {
-    background-color: var(--color-purple-300);
+  .bg-purple-500 {
+    background-color: var(--color-purple-500);
   }
   .bg-purple-700 {
     background-color: var(--color-purple-700);
   }
-  .px-2 {
-    padding-inline: calc(var(--spacing) * 2);
+  .bg-purple-800 {
+    background-color: var(--color-purple-800);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -268,11 +277,23 @@
   .px-28 {
     padding-inline: calc(var(--spacing) * 28);
   }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
   }
+  .py-40 {
+    padding-block: calc(var(--spacing) * 40);
+  }
   .py-80 {
     padding-block: calc(var(--spacing) * 80);
+  }
+  .py-809 {
+    padding-block: calc(var(--spacing) * 809);
   }
   .pt-3 {
     padding-top: calc(var(--spacing) * 3);
@@ -280,17 +301,9 @@
   .pl-9 {
     padding-left: calc(var(--spacing) * 9);
   }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
   .text-6xl {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
-  }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .text-white {
     color: var(--color-white);
@@ -301,6 +314,27 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .hover\:bg-amber-200 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-200);
+      }
+    }
+  }
+  .hover\:text-slate-800 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-slate-800);
+      }
+    }
+  }
+  .hover\:bg-blend-exclusion {
+    &:hover {
+      @media (hover: hover) {
+        background-blend-mode: exclusion;
+      }
+    }
   }
 }
 @property --tw-space-x-reverse {
